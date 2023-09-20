@@ -2,13 +2,16 @@
 
 namespace Ossycodes\Nigeriabulksms\Common;
 
+use Ossycodes\Nigeriabulksms\Exceptions\BalanceException;
+use Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException;
+
 
 /**
  * Class ResponseError
  */
 class ResponseError
 {
-    public const EXCEPTION_MESSAGE = 'Got error response from the server: %s';
+    public const EXCEPTION_MESSAGE = 'Got error response from the server, error description: %s error code: %s';
 
     public const INTERNAL_ERROR_MESSAGE = 'internal error';
 
@@ -45,11 +48,13 @@ class ResponseError
         $this->description  = $body->error ?? self::INTERNAL_ERROR_MESSAGE;
         $this->code         = $body->errno ?? self::INTERNAL_ERROR;
 
-        // if($this->code === self::INSUFFICIENT_FUNDS) {
-        //     throw new BalanceException($this->getExceptionMessage($error));
-        // } elseif ($this->code === self::REQUEST_NOT_ALLOWED) {
-        //     throw new Exceptions\AuthenticateException($this->getExceptionMessage($error));
-        // }
+        if($this->code === self::INSUFFICIENT_FUNDS) {
+            throw new BalanceException($this->getExceptionMessage());
+        }
+
+        if(in_array($this->code, [self::LOGIN_FAILED, self::LOGIN_STATUS_FAILED])) {
+            throw new AuthenticateException($this->getExceptionMessage());
+        }
     }
 
     /**
@@ -59,9 +64,9 @@ class ResponseError
      *
      * @return string
      */
-    private function getExceptionMessage($error)
+    public function getExceptionMessage()
     {
-        return sprintf(self::EXCEPTION_MESSAGE, $error->description);
+        return sprintf(self::EXCEPTION_MESSAGE , $this->description, $this->code);
     }
 
     /**
