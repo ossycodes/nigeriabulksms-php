@@ -5,6 +5,7 @@ namespace Ossycodes\Nigeriabulksms;
 use Ossycodes\Nigeriabulksms\Configuration;
 use Ossycodes\Nigeriabulksms\Actions\Balance;
 use Ossycodes\Nigeriabulksms\Actions\Payment;
+use Ossycodes\Nigeriabulksms\Actions\Profile;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
 
 /**
@@ -36,6 +37,11 @@ class Client
      */
     public $payments;
 
+    /**
+     * @var Profile
+     */
+    public $profile;
+
     public function __construct(Configuration $config, ?HttpClient $httpClient = null)
     {
         $this->config = $config;
@@ -59,6 +65,7 @@ class Client
 
         $this->balance  = new Balance($this->httpClient);
         $this->payments = new Payment($this->httpClient);
+        $this->profile  = new Profile($this->httpClient);
 
     }
 
