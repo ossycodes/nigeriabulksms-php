@@ -120,7 +120,6 @@ class HttpClient
     }
 
     /**
-     * @param string $method
      * @param mixed $query
      *
      * @return array
@@ -128,7 +127,7 @@ class HttpClient
      * @throws AuthenticateException
      * @throws HttpException
      */
-    public function performHttpRequest(string $method, $query = null): ?array
+    public function performHttpRequest($query = null): ?array
     {
         $curl = curl_init();
 
