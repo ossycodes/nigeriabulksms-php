@@ -13,8 +13,6 @@ class HttpClient
 {
     public const REQUEST_POST = 'POST';
 
-    public const HTTP_NO_CONTENT = 204;
-
     /**
      * @var string
      */
@@ -48,11 +46,6 @@ class HttpClient
     /**
      * @var array
      */
-    private $headers = [];
-
-    /**
-     * @var array
-     */
     private $httpOptions = [];
 
     public function __construct(string $endpoint, Configuration $config)
@@ -68,9 +61,9 @@ class HttpClient
                 sprintf(
                     'Timeout must be an int > 0, got "%s".',
                     \is_object($timeout) ? \get_class($timeout) : \gettype($timeout) . ' ' . var_export($timeout, true)
-                    )
-                );
-            }
+                )
+            );
+        }
 
         $this->timeout = $timeout;
 
@@ -140,10 +133,11 @@ class HttpClient
 
         curl_setopt($curl, \CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, \CURLOPT_HEADER, true);
-        curl_setopt($curl, \CURLOPT_URL, $this->endpoint);
-        curl_setopt($curl, \CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl,CURLOPT_POST, true);
-        curl_setopt($curl,CURLOPT_POSTFIELDS, $this->getRequestBody($query));
+        curl_setopt($curl, \CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_URL, $this->getRequestUrl($query));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, self::REQUEST_POST);
         curl_setopt($curl, \CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($curl, \CURLOPT_CONNECTTIMEOUT, $this->connectionTimeout);
 
