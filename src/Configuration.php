@@ -2,6 +2,9 @@
 
 namespace Ossycodes\Nigeriabulksms;
 
+/**
+ * Class Configuration
+ */
 class Configuration
 {
     private static $defaultConfiguration;

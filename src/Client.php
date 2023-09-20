@@ -6,6 +6,9 @@ use Ossycodes\Nigeriabulksms\Configuration;
 use Ossycodes\Nigeriabulksms\Actions\Balance;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
 
+/**
+ * Class Client
+ */
 class Client
 {
     public const ENDPOINT = 'https://portal.nigeriabulksms.com/api/';
