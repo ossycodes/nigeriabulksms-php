@@ -4,7 +4,8 @@ namespace Ossycodes\Nigeriabulksms;
 
 use Ossycodes\Nigeriabulksms\Configuration;
 use Ossycodes\Nigeriabulksms\Actions\Balance;
-use Ossycodes\Nigeriabulksms\Actions\Payment;
+use Ossycodes\Nigeriabulksms\Actions\Contacts;
+use Ossycodes\Nigeriabulksms\Actions\Payments;
 use Ossycodes\Nigeriabulksms\Actions\Profile;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
 
@@ -33,7 +34,7 @@ class Client
     public $balance;
 
     /**
-     * @var Payment
+     * @var Payments
      */
     public $payments;
 
@@ -41,6 +42,11 @@ class Client
      * @var Profile
      */
     public $profile;
+
+    /**
+     * @var Contacts
+     */
+    public $contacts;
 
     public function __construct(Configuration $config, ?HttpClient $httpClient = null)
     {
@@ -64,8 +70,9 @@ class Client
         $this->httpClient->addUserAgentString($this->getPhpVersion());
 
         $this->balance  = new Balance($this->httpClient);
-        $this->payments = new Payment($this->httpClient);
+        $this->payments = new Payments($this->httpClient);
         $this->profile  = new Profile($this->httpClient);
+        $this->contacts = new Contacts($this->httpClient);
 
     }
 

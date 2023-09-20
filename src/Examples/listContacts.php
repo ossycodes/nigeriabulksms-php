@@ -11,14 +11,14 @@ $config = \Ossycodes\Nigeriabulksms\Configuration::getDefaultConfiguration()
 $client = new \Ossycodes\Nigeriabulksms\Client($config);
 
 try {
-    $payments = $client->payments->getList();
-    var_dump($payments);
+    $contacts = $client->contacts->getList();
+    var_dump($contacts);
 
     //iterate through each payment item
-    foreach($client->payments->getList()->getItems() as $payment) {
-        dump($payment->amount);
-        dump($payment->reference);
-        dump($payment->date);
+    foreach($client->contacts->getList()->getItems() as $contact) {
+        dump($contact->amount);
+        dump($contact->reference);
+        dump($contact->date);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {

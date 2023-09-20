@@ -5,9 +5,9 @@ namespace Ossycodes\Nigeriabulksms\Objects;
 use stdClass;
 
 /**
- * Class PaymentResponse
+ * Class PaymentsResponse
  */
-class PaymentResponse extends Base
+class PaymentsResponse extends Base
 {
     /**
      * @var string
