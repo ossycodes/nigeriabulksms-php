@@ -1,6 +1,6 @@
 <?php
 
-namespace Ossycodes\Nigeriabulksms;
+namespace Ossycodes\Nigeriabulksms\Exceptions;
 
 /**
  * Class HttpException
