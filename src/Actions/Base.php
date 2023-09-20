@@ -6,6 +6,7 @@ use Ossycodes\Nigeriabulksms\Common\HttpClient;
 use Ossycodes\Nigeriabulksms\Common\ResponseError;
 use Ossycodes\Nigeriabulksms\Exceptions\ServerException;
 use Ossycodes\Nigeriabulksms\Exceptions\RequestException;
+use Ossycodes\Nigeriabulksms\Objects\BalanceResponse;
 
 /**
  * Class Base
@@ -28,7 +29,7 @@ class Base
     protected $object;
 
     /**
-     * @var Objects\MessageResponse
+     * @var BalanceResponse
      */
     protected $responseObject;
 
@@ -68,10 +69,10 @@ class Base
         $this->object = $object;
     }
 
-    // public function getResponseObject(): Objects\MessageResponse
-    // {
-    //     return $this->responseObject;
-    // }
+    public function getResponseObject(): BalanceResponse
+    {
+        return $this->responseObject;
+    }
 
     /**
      * @param mixed $responseObject
@@ -82,7 +83,7 @@ class Base
     }
 
     /**
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage|null
+     * @return \Ossycodes\Nigeriabulksms\Objects\Balance|\Ossycodes\Nigeriabulksms\Objects\BalanceResponse|null
      *
      * @throws Exceptions\AuthenticateException
      * @throws Exceptions\BalanceException
@@ -99,7 +100,7 @@ class Base
 
     /**
      * @param string|null $body
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage|Objects\MessageResponse|null
+     * @return \Ossycodes\Nigeriabulksms\Objects\Balance|\Ossycodes\Nigeriabulksms\Objects\BalanceResponse|null
      *
      * @throws Exceptions\AuthenticateException
      * @throws Exceptions\BalanceException
@@ -120,22 +121,14 @@ class Base
 
         if (!empty($body->error)) {
             $responseError = new ResponseError($body);
-            throw new RequestException($responseError->getErrorDescriptionWithCode());
+            throw new RequestException($responseError->getExceptionMessage());
         }
 
-        // if ($this->responseObject) {
-        //     return $this->responseObject->loadFromStdclass($body);
-        // }
+        if ($this->responseObject) {
+            return $this->responseObject->loadFromStdclass($body);
+        }
 
-        // if (is_array($body)) {
-        //     $parsed = [];
-        //     foreach ($body as $b) {
-        //         $parsed[] = $this->object->loadFromStdclass($b);
-        //     }
-        //     return $parsed;
-        // }
-
-        // return $this->object->loadFromStdclass($body);
+        return $this->object->loadFromStdclass($body);
     }
 
     public function getHttpClient(): HttpClient
