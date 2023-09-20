@@ -21,6 +21,16 @@ class Configuration
     protected $password = '';
 
     /**
+     * @var int
+     */
+    protected $timeout = 10;
+
+    /**
+     * @var int
+     */
+    protected $connectionTimeout = 10;
+
+    /**
      * Gets the default configuration instance
      *
      * @return Configuration
@@ -34,14 +44,14 @@ class Configuration
         return self::$defaultConfiguration;
     }
 
-     /**
+    /**
      * Sets the username for authentication
      *
      * @param string
      *
      * @return $this
      */
-    public function setUsername($username)
+    public function setUsername($username): Configuration
     {
         $this->username = $username;
 
@@ -65,7 +75,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setPassword($password)
+    public function setPassword($password): Configuration
     {
         $this->password = $password;
 
@@ -80,5 +90,43 @@ class Configuration
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function setTimeout(int $timeout): Configuration
+    {
+        $this->timeout = $timeout;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimeout(): int
+    {
+        return $this->timeout;
+    }
+
+    public function setConnectionTimeout(int $connectionTimeout): Configuration
+    {
+        $this->connectionTimeout = $connectionTimeout;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getConnectionTimeout(): int
+    {
+        return $this->connectionTimeout;
+    }
+
+    public function getAuthenticationParameters(): array
+    {
+        return [
+            'username'  => $this->getUsername(),
+            'password'  => $this->getPassword(),
+        ];
     }
 }
