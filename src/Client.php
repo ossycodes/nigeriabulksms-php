@@ -4,6 +4,7 @@ namespace Ossycodes\Nigeriabulksms;
 
 use Ossycodes\Nigeriabulksms\Configuration;
 use Ossycodes\Nigeriabulksms\Actions\Balance;
+use Ossycodes\Nigeriabulksms\Actions\Payment;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
 
 /**
@@ -30,6 +31,11 @@ class Client
      */
     public $balance;
 
+    /**
+     * @var Payment
+     */
+    public $payments;
+
     public function __construct(Configuration $config, ?HttpClient $httpClient = null)
     {
         $this->config = $config;
@@ -51,7 +57,8 @@ class Client
         $this->httpClient->addUserAgentString('Ossycodes/Nigeriabulksms/ApiClient/' . self::CLIENT_VERSION);
         $this->httpClient->addUserAgentString($this->getPhpVersion());
 
-        $this->balance = new Balance($this->httpClient);
+        $this->balance  = new Balance($this->httpClient);
+        $this->payments = new Payment($this->httpClient);
 
     }
 

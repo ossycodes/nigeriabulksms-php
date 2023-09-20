@@ -2,11 +2,12 @@
 
 namespace Ossycodes\Nigeriabulksms\Actions;
 
+use Ossycodes\Nigeriabulksms\Objects\BaseList;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
 use Ossycodes\Nigeriabulksms\Common\ResponseError;
+use Ossycodes\Nigeriabulksms\Objects\BalanceResponse;
 use Ossycodes\Nigeriabulksms\Exceptions\ServerException;
 use Ossycodes\Nigeriabulksms\Exceptions\RequestException;
-use Ossycodes\Nigeriabulksms\Objects\BalanceResponse;
 
 /**
  * Class Base
@@ -93,9 +94,51 @@ class Base
      */
     public function read()
     {
-        [, , $body] = $this->httpClient->performHttpRequest(['action' => $this->actionName]);
+        [,, $body] = $this->httpClient->performHttpRequest($this->actionName);
 
         return $this->processRequest($body);
+    }
+
+    /**
+     * @param array|null $parameters
+     * @return \Ossycodes\Nigeriabulksms\Objects\Payment|\Ossycodes\Nigeriabulksms\Objects\PaymentResponse|null
+     *
+     * @throws Exceptions\AuthenticateException
+     * @throws Exceptions\BalanceException
+     * @throws Exceptions\HttpException
+     * @throws Exceptions\RequestException
+     * @throws Exceptions\ServerException
+     * @throws \JsonException
+     */
+    public function getList(?array $parameters = [])
+    {
+        [,, $body] = $this->httpClient->performHttpRequest($this->actionName);
+
+        if (strpos($body, '"error"') !== false) {
+            return $this->processRequest($body);
+        }
+
+        $body = json_decode($body, null, 512, \JSON_THROW_ON_ERROR);
+
+        $baseList = new BaseList();
+
+        $objectName = $this->object;
+
+        $baseList->items = [];
+
+        foreach ($body as $item) {
+
+            if ($this->responseObject) {
+                $responseObject = clone $this->responseObject;
+                $baseList->items[] =  $responseObject->loadFromStdclass($item);
+            } else {
+                $object = new $objectName($this->httpClient);
+                $message = $object->loadFromArray($item);
+                $baseList->items[] = $message;
+            }
+        }
+
+        return $baseList;
     }
 
     /**

@@ -4,7 +4,7 @@ namespace Ossycodes\Nigeriabulksms\Common;
 
 use InvalidArgumentException;
 use Ossycodes\Nigeriabulksms\Configuration;
-use Ossycodes\Nigeriabulksms\HttpException;
+use Ossycodes\Nigeriabulksms\Exceptions\HttpException;
 
 /**
  * Class HttpClient
@@ -175,15 +175,15 @@ class HttpClient
     }
 
     /**
-     * @param mixed $query
+     * @param string $query
      *
      * @return string
      */
-    public function getRequestUrl($query): string
+    public function getRequestUrl($actionName): string
     {
         $requestUrl = $this->endpoint;
 
-        $query = $query + $this->config->getAuthenticationParameters();
+        $query = ['action' => $actionName] + $this->config->getAuthenticationParameters();
 
         if ($query) {
             if (\is_array($query)) {
