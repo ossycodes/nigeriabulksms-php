@@ -11,14 +11,19 @@ $config = \Ossycodes\Nigeriabulksms\Configuration::getDefaultConfiguration()
 $client = new \Ossycodes\Nigeriabulksms\Client($config);
 
 try {
-    $contacts = $client->contacts->getList();
-    var_dump($contacts);
+    $history = $client->history->getList();
+    var_dump($history);
 
-    //iterate through each contact item
-    foreach($client->contacts->getList()->getItems() as $contact) {
-        dump($contact->id);
-        dump($contact->name);
-        dump($contact->mobile);
+    //iterate through each history item
+    foreach($client->history->getList()->getItems() as $history) {
+        dump($history->message);
+        dump($history->sender);
+        dump($history->price);
+        dump($history->unit);
+        dump($history->length);
+        dump($history->class);
+        dump($history->send_date);
+        dump($history->date);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {

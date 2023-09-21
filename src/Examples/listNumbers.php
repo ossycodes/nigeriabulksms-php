@@ -14,16 +14,17 @@ try {
     $numbers = $client->numbers->getList();
     var_dump($numbers);
 
-    //iterate through each payment item
+    //iterate through each numbers item
     foreach($client->numbers->getList()->getItems() as $number) {
-        dump($payment->amount);
-        dump($payment->reference);
-        dump($payment->date);
+        dump($number->id);
+        dump($number->name);
+        dump($number->count);
+        dump($number->description);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {
     // That means that your username and/or password is incorrect
-    echo 'wrong login';
+    echo 'invalid credentials';
 }
 catch (\Ossycodes\Nigeriabulksms\Exceptions\BalanceException $e) {
     // That means that your balance is insufficient

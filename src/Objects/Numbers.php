@@ -20,9 +20,14 @@ class Numbers extends Base
     public $name;
 
     /**
+     * @var int
+     */
+    public $count;
+
+    /**
      * @var string
      */
-    public $mobile;
+    public $description;
 
     public function loadFromStdclass(stdClass $object): self
     {

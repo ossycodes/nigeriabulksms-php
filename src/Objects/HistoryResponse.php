@@ -12,17 +12,37 @@ class HistoryResponse extends Base
     /**
      * @var string
      */
-    public $name;
+    public $message;
 
     /**
      * @var string
      */
-    public $username;
+    public $price;
+
+    /**
+     * @var int
+     */
+    public $units;
 
     /**
      * @var string
      */
-    public $mobile;
+    public $length;
+
+    /**
+     * @var string
+     */
+    public $send_date;
+
+    /**
+     * @var string
+     */
+    public $date;
+
+    /**
+     * @var string
+     */
+    public $class;
 
     /**
      * @var string

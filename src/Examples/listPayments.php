@@ -23,7 +23,7 @@ try {
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {
     // That means that your username and/or password is incorrect
-    echo 'wrong login';
+    echo 'invalid credentials';
 }
 catch (\Ossycodes\Nigeriabulksms\Exceptions\BalanceException $e) {
     // That means that your balance is insufficient
