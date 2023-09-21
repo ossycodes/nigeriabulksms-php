@@ -125,7 +125,7 @@ try {
 ## Documentation
 
 Complete documentation, instructions, and examples are available at:
-[https://nigeriabulksms.com/sms-gateway-api-in-nigeria//](https://nigeriabulksms.com/sms-gateway-api-in-nigeria/)
+[https://nigeriabulksms.com/sms-gateway-api-in-nigeria/](https://nigeriabulksms.com/sms-gateway-api-in-nigeria/)
 
 ### Testing
 
