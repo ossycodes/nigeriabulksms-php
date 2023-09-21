@@ -29,11 +29,6 @@ class HttpClient
     protected $userAgent = [];
 
     /**
-     * @var Configuration
-     */
-    protected $authentication;
-
-    /**
      * @var int
      */
     private $timeout;
@@ -89,11 +84,6 @@ class HttpClient
         $this->userAgent[] = $userAgent;
     }
 
-    public function setAuthentication(Configuration $configuration): void
-    {
-        $this->authentication = $configuration;
-    }
-
     /**
      * @param mixed $option
      * @param mixed $value
@@ -134,10 +124,10 @@ class HttpClient
         curl_setopt($curl, \CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, \CURLOPT_HEADER, true);
         curl_setopt($curl, \CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_URL, $this->getRequestUrl($query));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, self::REQUEST_POST);
+        curl_setopt($curl, \CURLOPT_URL, $this->getRequestUrl($query));
+        curl_setopt($curl, \CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, \CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, \CURLOPT_CUSTOMREQUEST, self::REQUEST_POST);
         curl_setopt($curl, \CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($curl, \CURLOPT_CONNECTTIMEOUT, $this->connectionTimeout);
 
@@ -175,7 +165,7 @@ class HttpClient
     }
 
     /**
-     * @param string $query
+     * @param string $actionName
      *
      * @return string
      */
@@ -193,13 +183,6 @@ class HttpClient
         }
 
         return $requestUrl;
-    }
-
-    public function getRequestBody($query)
-    {
-        $query = $query + $this->config->getAuthenticationParameters();
-
-        return http_build_query($query);
     }
 
     public function setTimeout(int $timeout): HttpClient

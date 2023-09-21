@@ -52,10 +52,6 @@ class Client
     {
         $this->config = $config;
 
-        if ($this->config === null) {
-            throw new AuthenticateException('Cannot perform API Request without username and password set as the default configuration');
-        }
-
         if ($this->config->getUsername() === null) {
             throw new AuthenticateException('Cannot perform API Request without username set');
         }
@@ -65,7 +61,6 @@ class Client
         }
 
         $this->httpClient = new HttpClient(self::ENDPOINT, $this->config);
-
         $this->httpClient->addUserAgentString('Ossycodes/Nigeriabulksms/ApiClient/' . self::CLIENT_VERSION);
         $this->httpClient->addUserAgentString($this->getPhpVersion());
 
@@ -73,7 +68,6 @@ class Client
         $this->payments = new Payments($this->httpClient);
         $this->profile  = new Profile($this->httpClient);
         $this->contacts = new Contacts($this->httpClient);
-
     }
 
     private function getPhpVersion(): string
