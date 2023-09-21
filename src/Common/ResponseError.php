@@ -4,6 +4,7 @@ namespace Ossycodes\Nigeriabulksms\Common;
 
 use Ossycodes\Nigeriabulksms\Exceptions\BalanceException;
 use Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException;
+use Ossycodes\Nigeriabulksms\Exceptions\RequestDeniedException;
 
 
 /**
@@ -14,6 +15,8 @@ class ResponseError
     public const EXCEPTION_MESSAGE = 'Got error response from the server, error description: %s error code: %s';
 
     public const INTERNAL_ERROR_MESSAGE = 'internal error';
+
+    public const REQUEST_DENIED = 101;
 
     public const SUCCESS = 1;
 
@@ -40,16 +43,20 @@ class ResponseError
     /**
      * @param mixed $body
      *
-     * @throws Exceptions\AuthenticateException
-     * @throws Exceptions\BalanceException
+     * @throws AuthenticateException
+     * @throws BalanceException
      */
     public function __construct($body)
     {
         $this->description  = $body->error ?? self::INTERNAL_ERROR_MESSAGE;
-        $this->code         = $body->errno ?? self::INTERNAL_ERROR;
+        $this->code         = (int) $body->errno ?? self::INTERNAL_ERROR;
 
         if($this->code === self::INSUFFICIENT_FUNDS) {
             throw new BalanceException($this->getExceptionMessage());
+        }
+
+        if($this->code === self::REQUEST_DENIED) {
+            throw new RequestDeniedException($this->getExceptionMessage());
         }
 
         if(in_array($this->code, [self::LOGIN_FAILED, self::LOGIN_STATUS_FAILED])) {

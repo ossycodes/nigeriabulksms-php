@@ -21,4 +21,16 @@ class Audios extends Base
 
         parent::__construct($httpClient);
     }
+
+    public function upload(AudiosObject $audio)
+    {
+        $this->setActionName('upload');
+
+        [, , $body] = $this->httpClient->performHttpRequest(
+            $this->actionName,
+            [ 'url' => $audio->url],
+        );
+
+        return $this->processRequest($body);
+    }
 }

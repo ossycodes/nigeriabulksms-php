@@ -103,14 +103,15 @@ class HttpClient
     }
 
     /**
-     * @param mixed $query
+     * @param string $actionName
+     * @param array $body
      *
      * @return array
      *
      * @throws AuthenticateException
      * @throws HttpException
      */
-    public function performHttpRequest($query = null): ?array
+    public function performHttpRequest($actionName, $body = []): ?array
     {
         $curl = curl_init();
 
@@ -124,7 +125,7 @@ class HttpClient
         curl_setopt($curl, \CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, \CURLOPT_HEADER, true);
         curl_setopt($curl, \CURLOPT_POST, true);
-        curl_setopt($curl, \CURLOPT_URL, $this->getRequestUrl($query));
+        curl_setopt($curl, \CURLOPT_URL, $this->getRequestUrl($actionName, $body));
         curl_setopt($curl, \CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, \CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, \CURLOPT_CUSTOMREQUEST, self::REQUEST_POST);
@@ -166,14 +167,15 @@ class HttpClient
 
     /**
      * @param string $actionName
+     * @param array $body
      *
      * @return string
      */
-    public function getRequestUrl($actionName): string
+    public function getRequestUrl($actionName, $body = []): string
     {
         $requestUrl = $this->endpoint;
 
-        $query = ['action' => $actionName] + $this->config->getAuthenticationParameters();
+        $query = ['action' => $actionName] + $body +  $this->config->getAuthenticationParameters();
 
         if ($query) {
             if (\is_array($query)) {

@@ -34,6 +34,11 @@ class Audios extends Base
      */
     public $description;
 
+    /**
+     * @var string
+     */
+    public $url;
+
     public function loadFromStdclass(stdClass $object): self
     {
         parent::loadFromStdclass($object);
