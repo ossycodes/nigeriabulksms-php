@@ -92,7 +92,12 @@ class Client
             throw new AuthenticateException('Cannot perform API Requests without username and password set');
         }
 
-        $this->httpClient = new HttpClient(self::ENDPOINT, $this->config);
+        if ($httpClient === null) {
+            $this->httpClient = new HttpClient(self::ENDPOINT, $this->config);
+        } else {
+            $this->httpClient = $httpClient;
+        }
+
         $this->httpClient->addUserAgentString('Ossycodes/Nigeriabulksms/ApiClient/' . self::CLIENT_VERSION);
         $this->httpClient->addUserAgentString($this->getPhpVersion());
 
