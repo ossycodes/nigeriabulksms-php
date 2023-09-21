@@ -14,6 +14,7 @@ use Ossycodes\Nigeriabulksms\Actions\Reports;
 use Ossycodes\Nigeriabulksms\Actions\Contacts;
 use Ossycodes\Nigeriabulksms\Actions\Payments;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
+use Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException;
 
 /**
  * Class Client
