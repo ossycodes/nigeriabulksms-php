@@ -2,10 +2,22 @@
 
 namespace Ossycodes\Nigeriabulksms\Actions;
 
+use Ossycodes\Nigeriabulksms\Objects\Balance;
+use Ossycodes\Nigeriabulksms\Objects\History;
+use Ossycodes\Nigeriabulksms\Objects\Numbers;
+use Ossycodes\Nigeriabulksms\Objects\Profile;
+use Ossycodes\Nigeriabulksms\Objects\Reports;
 use Ossycodes\Nigeriabulksms\Objects\BaseList;
+use Ossycodes\Nigeriabulksms\Objects\Contacts;
+use Ossycodes\Nigeriabulksms\Objects\Payments;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
 use Ossycodes\Nigeriabulksms\Common\ResponseError;
 use Ossycodes\Nigeriabulksms\Objects\BalanceResponse;
+use Ossycodes\Nigeriabulksms\Objects\HistoryResponse;
+use Ossycodes\Nigeriabulksms\Objects\ProfileResponse;
+use Ossycodes\Nigeriabulksms\Objects\ReportsResponse;
+use Ossycodes\Nigeriabulksms\Objects\ContactsResponse;
+use Ossycodes\Nigeriabulksms\Objects\PaymentsResponse;
 use Ossycodes\Nigeriabulksms\Exceptions\ServerException;
 use Ossycodes\Nigeriabulksms\Exceptions\RequestException;
 
@@ -25,12 +37,12 @@ class Base
     protected $actionName;
 
     /**
-     * @var Objects\Hlr|Objects\Message|Objects\Balance|Objects\Verify|Objects\Lookup|Objects\VoiceMessage|Objects\Conversation\Conversation
+     * @var Balance|Contacts|History|Numbers|Payments|Profile|Reports
      */
     protected $object;
 
     /**
-     * @var BalanceResponse
+     * @var BalanceResponse|ContactsResponse|HistoryResponse|PaymentsResponse|ProfileResponse|ReportsResponse
      */
     protected $responseObject;
 

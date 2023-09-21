@@ -7,6 +7,9 @@ use Ossycodes\Nigeriabulksms\Actions\Balance;
 use Ossycodes\Nigeriabulksms\Actions\Contacts;
 use Ossycodes\Nigeriabulksms\Actions\Payments;
 use Ossycodes\Nigeriabulksms\Actions\Profile;
+use Ossycodes\Nigeriabulksms\Actions\History;
+use Ossycodes\Nigeriabulksms\Actions\Numbers;
+use Ossycodes\Nigeriabulksms\Actions\Reports;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
 
 /**
@@ -48,6 +51,21 @@ class Client
      */
     public $contacts;
 
+    /**
+     * @var History
+     */
+    public $history;
+
+    /**
+     * @var Numbers
+     */
+    public $numbers;
+
+    /**
+     * @var Reports
+     */
+    public $reports;
+
     public function __construct(Configuration $config, ?HttpClient $httpClient = null)
     {
         $this->config = $config;
@@ -68,6 +86,9 @@ class Client
         $this->payments = new Payments($this->httpClient);
         $this->profile  = new Profile($this->httpClient);
         $this->contacts = new Contacts($this->httpClient);
+        $this->history  = new History($this->httpClient);
+        $this->numbers  = new Numbers($this->httpClient);
+        $this->reports  = new Reports($this->httpClient);
     }
 
     private function getPhpVersion(): string
