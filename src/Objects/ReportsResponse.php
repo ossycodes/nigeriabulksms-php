@@ -10,19 +10,64 @@ use stdClass;
 class ReportsResponse extends Base
 {
     /**
+     * @var string
+     */
+    public $service;
+
+    /**
+     * @var string
+     */
+    public $reference;
+
+    /**
+     * @var string
+     */
+    public $status;
+
+    /**
+     * @var string
+     */
+    public $sender;
+
+    /**
+     * @var string
+     */
+    public $message;
+
+    /**
      * @var int
      */
-    public $id;
-
-    /**
-     * @var string
-     */
-    public $name;
-
-    /**
-     * @var string
-     */
     public $mobile;
+
+    /**
+     * @var string
+     */
+    public $data;
+
+    /**
+     * @var string
+     */
+    public $price;
+
+    /**
+     * @var int
+     */
+    public $units;
+
+    /**
+     * @var string
+     */
+    public $length;
+
+    /**
+     * @var string
+     */
+    public $send_date;
+
+    /**
+     * @var string
+     */
+    public $date;
 
     public function loadFromStdclass(stdClass $object): self
     {

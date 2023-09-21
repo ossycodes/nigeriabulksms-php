@@ -12,12 +12,57 @@ class Reports extends Base
     /**
      * @var string
      */
-    public $amount;
+    public $service;
 
     /**
-     * @var null|string
+     * @var string
      */
     public $reference;
+
+    /**
+     * @var string
+     */
+    public $status;
+
+    /**
+     * @var string
+     */
+    public $sender;
+    
+    /**
+     * @var string
+     */
+    public $message;
+
+    /**
+     * @var int
+     */
+    public $mobile;
+
+    /**
+     * @var string
+     */
+    public $data;
+
+    /**
+     * @var string
+     */
+    public $price;
+
+    /**
+     * @var int
+     */
+    public $units;
+
+    /**
+     * @var string
+     */
+    public $length;
+
+    /**
+     * @var string
+     */
+    public $send_date;
 
     /**
      * @var string
