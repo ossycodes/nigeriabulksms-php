@@ -14,11 +14,11 @@ try {
     $contacts = $client->contacts->getList();
     var_dump($contacts);
 
-    //iterate through each payment item
+    //iterate through each contact item
     foreach($client->contacts->getList()->getItems() as $contact) {
-        dump($contact->amount);
-        dump($contact->reference);
-        dump($contact->date);
+        dump($contact->id);
+        dump($contact->name);
+        dump($contact->mobile);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {
