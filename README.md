@@ -28,7 +28,7 @@ When you do not use Composer. You can git checkout or download [this repository]
 
 ## Usage
 
-We have put some self-explanatory examples in the *examples* directory, but here is a quick breakdown on how it works. First, you need to set up a **Nigeriabulksms\Client**. Be sure to replace **YOUR_USERNAME** and **YOUR_PASSWORD** with your real credentials.
+We have put some self-explanatory examples in the [src/Examples](https://github.com/ossycodes/nigeriabulksms-php/tree/master/src/Examples) directory, but here is a quick breakdown on how it works. First, you need to set up a **Nigeriabulksms\Client**. Be sure to replace **YOUR_USERNAME** and **YOUR_PASSWORD** with your real credentials.
 
 ```php
 require 'autoload.php';
@@ -90,7 +90,7 @@ $client = new \Ossycodes\Nigeriabulksms\Client($config);
 try {
 
     $message = new \Ossycodes\Nigeriabulksms\Objects\TextMessage();
-    $message->sender = 'YOUR_SENDER_NAME'; //check the dashboard to see your sender name [here](https://portal.nigeriabulksms.com/bulksms/)
+    $message->sender = 'YOUR_SENDER_NAME';
     $message->recipients = '2342222222222';
     $message->body =  'body of text message goes in here'; //should be less than 160 characters
     
