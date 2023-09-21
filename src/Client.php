@@ -3,14 +3,15 @@
 namespace Ossycodes\Nigeriabulksms;
 
 use Ossycodes\Nigeriabulksms\Configuration;
+use Ossycodes\Nigeriabulksms\Actions\Audios;
+use Ossycodes\Nigeriabulksms\Actions\Groups;
 use Ossycodes\Nigeriabulksms\Actions\Balance;
-use Ossycodes\Nigeriabulksms\Actions\Contacts;
-use Ossycodes\Nigeriabulksms\Actions\Payments;
-use Ossycodes\Nigeriabulksms\Actions\Profile;
 use Ossycodes\Nigeriabulksms\Actions\History;
 use Ossycodes\Nigeriabulksms\Actions\Numbers;
+use Ossycodes\Nigeriabulksms\Actions\Profile;
 use Ossycodes\Nigeriabulksms\Actions\Reports;
-use Ossycodes\Nigeriabulksms\Actions\Audios;
+use Ossycodes\Nigeriabulksms\Actions\Contacts;
+use Ossycodes\Nigeriabulksms\Actions\Payments;
 use Ossycodes\Nigeriabulksms\Common\HttpClient;
 
 /**
@@ -72,6 +73,11 @@ class Client
      */
     public $audios;
 
+    /**
+     * @var Groups
+     */
+    public $groups;
+
     public function __construct(Configuration $config, ?HttpClient $httpClient = null)
     {
         $this->config = $config;
@@ -92,6 +98,7 @@ class Client
         $this->numbers  = new Numbers($this->httpClient);
         $this->reports  = new Reports($this->httpClient);
         $this->audios   = new Audios($this->httpClient);
+        $this->groups   = new Groups($this->httpClient);
     }
 
     private function getPhpVersion(): string
