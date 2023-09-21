@@ -1,7 +1,8 @@
-Nigeriabulksms's REST API for PHP
-===================================
+# The official PHP library for Nigeriabulksms API
 
-This repository contains the open source PHP client for Nigeriabulksms's REST API. Documentation can be found at: https://nigeriabulksms.com/sms-gateway-api-in-nigeria/
+
+
+This repository contains the open source PHP client for Nigeriabulksms's API. Documentation can be found at: https://nigeriabulksms.com/sms-gateway-api-in-nigeria/
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ossycodes/nigeriabulksms-php.svg?style=flat-square)](https://packagist.org/packages/ossycodes/nigeriabulksms-php)
 [![Total Downloads](https://img.shields.io/packagist/dt/ossycodes/nigeriabulksms-php.svg?style=flat-square)](https://packagist.org/packages/ossycodes/nigeriabulksms-php)
