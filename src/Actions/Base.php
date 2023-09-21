@@ -65,7 +65,7 @@ class Base
     }
 
     /**
-     * @return Objects\Balance|Objects\Conversation\Conversation|Objects\Hlr|Objects\Lookup|Objects\Message|Objects\Verify|Objects\VoiceMessage
+     * @return Balance|Contacts|History|Numbers|Payments|Profile|Reports
      */
     public function getObject()
     {
@@ -73,8 +73,6 @@ class Base
     }
 
     /**
-     * @deprecated
-     *
      * @param mixed $object
      */
     public function setObject($object): void
