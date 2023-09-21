@@ -70,12 +70,8 @@ class Client
     {
         $this->config = $config;
 
-        if ($this->config->getUsername() === null) {
-            throw new AuthenticateException('Cannot perform API Request without username set');
-        }
-
-        if ($this->config->getPassword() === null) {
-            throw new AuthenticateException('Cannot perform API Request without password set');
+        if (empty($this->config->getUsername()) || empty($this->config->getPassword())) {
+            throw new AuthenticateException('Cannot perform API Requests without username and password set');
         }
 
         $this->httpClient = new HttpClient(self::ENDPOINT, $this->config);
