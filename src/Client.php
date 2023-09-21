@@ -6,6 +6,7 @@ use Ossycodes\Nigeriabulksms\Configuration;
 use Ossycodes\Nigeriabulksms\Actions\Audios;
 use Ossycodes\Nigeriabulksms\Actions\Groups;
 use Ossycodes\Nigeriabulksms\Actions\Balance;
+use Ossycodes\Nigeriabulksms\Actions\Message;
 use Ossycodes\Nigeriabulksms\Actions\History;
 use Ossycodes\Nigeriabulksms\Actions\Numbers;
 use Ossycodes\Nigeriabulksms\Actions\Profile;
@@ -78,6 +79,11 @@ class Client
      */
     public $groups;
 
+    /**
+     * @var Message
+     */
+    public $message;
+
     public function __construct(Configuration $config, ?HttpClient $httpClient = null)
     {
         $this->config = $config;
@@ -90,6 +96,7 @@ class Client
         $this->httpClient->addUserAgentString('Ossycodes/Nigeriabulksms/ApiClient/' . self::CLIENT_VERSION);
         $this->httpClient->addUserAgentString($this->getPhpVersion());
 
+        $this->message  = new Message($this->httpClient);
         $this->balance  = new Balance($this->httpClient);
         $this->payments = new Payments($this->httpClient);
         $this->profile  = new Profile($this->httpClient);

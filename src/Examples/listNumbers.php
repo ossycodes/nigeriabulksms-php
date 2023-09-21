@@ -16,10 +16,10 @@ try {
 
     //iterate through each numbers item
     foreach($client->numbers->getList()->getItems() as $number) {
-        dump($number->id);
-        dump($number->name);
-        dump($number->count);
-        dump($number->description);
+        echo($number->id);
+        echo($number->name);
+        echo($number->count);
+        echo($number->description);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {

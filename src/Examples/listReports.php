@@ -16,19 +16,19 @@ try {
 
     //iterate through each report item
     foreach($client->reports->getList()->getItems() as $report) {
-        dump($report->service);
-        dump($report->reference);
-        dump($report->status);
-        dump($report->sender);
-        dump($report->status);
-        dump($report->message);
-        dump($report->mobile);
-        dump($report->data);
-        dump($report->price);
-        dump($report->units);
-        dump($report->length);
-        dump($report->send_date);
-        dump($report->date);
+        echo($report->service);
+        echo($report->reference);
+        echo($report->status);
+        echo($report->sender);
+        echo($report->status);
+        echo($report->message);
+        echo($report->mobile);
+        echo($report->data);
+        echo($report->price);
+        echo($report->units);
+        echo($report->length);
+        echo($report->send_date);
+        echo($report->date);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {

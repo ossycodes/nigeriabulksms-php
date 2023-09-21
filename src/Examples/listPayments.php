@@ -16,9 +16,9 @@ try {
 
     //iterate through each payment item
     foreach($client->payments->getList()->getItems() as $payment) {
-        dump($payment->amount);
-        dump($payment->reference);
-        dump($payment->date);
+        echo($payment->amount);
+        echo($payment->reference);
+        echo($payment->date);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {

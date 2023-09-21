@@ -16,14 +16,14 @@ try {
 
     //iterate through each history item
     foreach($client->history->getList()->getItems() as $history) {
-        dump($history->message);
-        dump($history->sender);
-        dump($history->price);
-        dump($history->unit);
-        dump($history->length);
-        dump($history->class);
-        dump($history->send_date);
-        dump($history->date);
+        echo($history->message);
+        echo($history->sender);
+        echo($history->price);
+        echo($history->unit);
+        echo($history->length);
+        echo($history->class);
+        echo($history->send_date);
+        echo($history->date);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {

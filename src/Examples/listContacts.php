@@ -16,9 +16,9 @@ try {
 
     //iterate through each contact item
     foreach($client->contacts->getList()->getItems() as $contact) {
-        dump($contact->id);
-        dump($contact->name);
-        dump($contact->mobile);
+        echo($contact->id);
+        echo($contact->name);
+        echo($contact->mobile);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {

@@ -16,9 +16,9 @@ try {
 
     //iterate through each groups item
     foreach($client->groups->getList()->getItems() as $group) {
-        dump($group->id);
-        dump($group->name);
-        dump($group->description);
+        echo($group->id);
+        echo($group->name);
+        echo($group->description);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {

@@ -177,6 +177,10 @@ class HttpClient
 
         $query = ['action' => $actionName] + $body +  $this->config->getAuthenticationParameters();
 
+        if($actionName == 'message') {
+            unset($query['action']);
+        }
+
         if ($query) {
             if (\is_array($query)) {
                 $query = http_build_query($query);

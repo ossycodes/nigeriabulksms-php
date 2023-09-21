@@ -16,11 +16,11 @@ try {
 
     //iterate through each audios item
     foreach($client->audios->getList()->getItems() as $audios) {
-        dump($audios->id);
-        dump($audios->name);
-        dump($audios->reference);
-        dump($audios->duration);
-        dump($audios->description);
+        echo($audios->id);
+        echo($audios->name);
+        echo($audios->reference);
+        echo($audios->duration);
+        echo($audios->description);
     }
 
 } catch (\Ossycodes\Nigeriabulksms\Exceptions\AuthenticateException $e) {
